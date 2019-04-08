@@ -1,10 +1,13 @@
 # bnd-manifest-bug-test
 
-Execute with:
+Execute with (powershell example):
 ```
-.\gradlew bndBugTest --stacktrace --info -PBND_TEST=1
-.\gradlew bndBugTest --stacktrace --info -PBND_TEST=2
-.\gradlew bndBugTest --stacktrace --info -PBND_TEST=3
+$env:BND_TEST = "1"
+.\gradlew bndBugTest --stacktrace --info
+$env:BND_TEST = "2"
+.\gradlew bndBugTest --stacktrace --info
+$env:BND_TEST = "3"
+.\gradlew bndBugTest --stacktrace --info
 ...
 ```
 
@@ -14,7 +17,7 @@ After a couple of executions we will see:
 Task ':TestProject:jar' is not up-to-date because:
   Value of input property 'externalProperty' has changed for task ':TestProject:jar'
 Generated bundles: [E:\IdeaProjects\bnd-manifest-bug-test\TestProject\generated\TestProject.jar]
-:TestProject:jar (Thread[Execution worker for ':',5,main]) completed. Took 0.029 secs.
+:TestProject:jar (Thread[Execution worker for ':',5,main]) completed. Took 0.028 secs.
 :TestProject:bndBugTest (Thread[Execution worker for ':',5,main]) started.
 
 > Task :TestProject:bndBugTest UP-TO-DATE
