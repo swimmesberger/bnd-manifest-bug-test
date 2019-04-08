@@ -1,0 +1,14 @@
+def jarTask = tasks.named('jar') {
+  inputs.property('externalProperty', System.getenv('BND_TEST'))
+}
+
+tasks.register('bndBugTest') {
+  def outputFile = new File(project.buildDir, 'outputFile.txt')
+  inputs.files(jarTask)
+  outputs.file(outputFile)
+  doLast {
+    project.delete(outputFile)
+    outputFile.createNewFile()
+    System.out.println("Executed!")
+  }
+}
