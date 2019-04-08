@@ -1,0 +1,16 @@
+apply plugin: 'java'
+
+
+def testProject = project(':TestProject')
+Task jarTask = testProject.tasks.getByName('jar')
+jarTask.inputs.property("externalProperty", findProperty("BND_TEST"))
+
+def outputFile = new File(testProject.buildDir, "outputFile.txt")
+Task t = testProject.tasks.create("bndBugTest")
+t.doLast({
+  outputFile.delete();
+  outputFile.createNewFile();
+  System.out.println("Executed!")
+});
+t.outputs.file(outputFile)
+t.inputs.files(jarTask)
