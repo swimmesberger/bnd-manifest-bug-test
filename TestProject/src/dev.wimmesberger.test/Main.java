@@ -1,4 +1,4 @@
-package dev.swimmesberger.test;
+package dev.wimmesberger.test;
 
 public class Main {
     public static void main(String[] args) {
